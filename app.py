@@ -249,26 +249,26 @@ delta_color = "#2ecc71" if delta > 0 else "#e74c3c" if delta < 0 else "#95a5a6"
 
 with col1:
     st.markdown(f"""
-    <div style="background: rgba(255,255,255,0.98); border-radius: 15px; padding: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
-        <p style="color: #1a1a1a; font-size: 16px; margin: 0 0 10px 0;">💰 Predicted Profit</p>
-        <p style="color: #1a1a1a; font-size: 28px; font-weight: bold; margin: 0 0 5px 0;">Rp {hasil_prediksi:.2f}M</p>
-        <p style="color: {delta_color}; font-size: 18px; margin: 0;">{'↑' if delta > 0 else '↓' if delta < 0 else ''} {delta:.2f}M</p>
+    <div style="background: rgba(255,255,255,0.98) !important; border-radius: 15px !important; padding: 20px !important; box-shadow: 0 4px 15px rgba(0,0,0,0.3) !important;">
+        <p style="color: #1a1a1a !important; font-size: 16px !important; margin: 0 0 10px 0 !important;">💰 Predicted Profit</p>
+        <p style="color: #1a1a1a !important; font-size: 28px !important; font-weight: bold !important; margin: 0 0 5px 0 !important;">Rp {hasil_prediksi:.2f}M</p>
+        <p style="color: {delta_color} !important; font-size: 18px !important; margin: 0 !important;">{'↑' if delta > 0 else '↓' if delta < 0 else ''} {delta:.2f}M</p>
     </div>
     """, unsafe_allow_html=True)
 
 with col2:
     st.markdown(f"""
-    <div style="background: rgba(255,255,255,0.98); border-radius: 15px; padding: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
-        <p style="color: #1a1a1a; font-size: 16px; margin: 0 0 10px 0;">📊 Baseline</p>
-        <p style="color: #1a1a1a; font-size: 28px; font-weight: bold; margin: 0;">Rp {baseline_pred:.2f}M</p>
+    <div style="background: rgba(255,255,255,0.98) !important; border-radius: 15px !important; padding: 20px !important; box-shadow: 0 4px 15px rgba(0,0,0,0.3) !important;">
+        <p style="color: #1a1a1a !important; font-size: 16px !important; margin: 0 0 10px 0 !important;">📊 Baseline</p>
+        <p style="color: #1a1a1a !important; font-size: 28px !important; font-weight: bold !important; margin: 0 !important;">Rp {baseline_pred:.2f}M</p>
     </div>
     """, unsafe_allow_html=True)
 
 with col3:
     st.markdown(f"""
-    <div style="background: rgba(255,255,255,0.98); border-radius: 15px; padding: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
-        <p style="color: #1a1a1a; font-size: 16px; margin: 0 0 10px 0;">Status</p>
-        <p style="font-size: 40px; margin: 0;">{emoji}</p>
+    <div style="background: rgba(255,255,255,0.98) !important; border-radius: 15px !important; padding: 20px !important; box-shadow: 0 4px 15px rgba(0,0,0,0.3) !important;">
+        <p style="color: #1a1a1a !important; font-size: 16px !important; margin: 0 0 10px 0 !important;">Status</p>
+        <p style="font-size: 40px !important; margin: 0 !important;">{emoji}</p>
     </div>
     """, unsafe_allow_html=True)
 
@@ -276,13 +276,26 @@ with col3:
 # 10. SCENARIO ANALYSIS
 # ==========================================
 
-st.subheader("📈 Scenario Analysis")
+st.markdown(f'<h2 style="color: white !important; text-shadow: 3px 3px 6px rgba(0,0,0,0.5) !important;">📈 Scenario Analysis</h2>', unsafe_allow_html=True)
+
 if delta > 0:
-    st.success(f"🎉 Excellent! Profit increases by {delta:.2f}M!")
+    st.markdown(f"""
+    <div style="background: rgba(46, 204, 113, 0.95) !important; color: white !important; padding: 15px !important; border-radius: 10px !important; margin: 10px 0 !important;">
+        <p style="color: white !important; font-size: 16px !important; margin: 0 !important;">🎉 Excellent! Profit increases by {delta:.2f}M!</p>
+    </div>
+    """, unsafe_allow_html=True)
 elif delta < 0:
-    st.error(f"⚠️ Warning: Profit decreases by {abs(delta):.2f}M")
+    st.markdown(f"""
+    <div style="background: rgba(231, 76, 60, 0.95) !important; color: white !important; padding: 15px !important; border-radius: 10px !important; margin: 10px 0 !important;">
+        <p style="color: white !important; font-size: 16px !important; margin: 0 !important;">⚠️ Warning: Profit decreases by {abs(delta):.2f}M</p>
+    </div>
+    """, unsafe_allow_html=True)
 else:
-    st.info("ℹ️ No change from baseline")
+    st.markdown(f"""
+    <div style="background: rgba(52, 152, 219, 0.95) !important; color: white !important; padding: 15px !important; border-radius: 10px !important; margin: 10px 0 !important;">
+        <p style="color: white !important; font-size: 16px !important; margin: 0 !important;">ℹ️ No change from baseline</p>
+    </div>
+    """, unsafe_allow_html=True)
 
 # ==========================================
 # 11. CHARTS
@@ -291,7 +304,7 @@ else:
 col_chart1, col_chart2 = st.columns(2)
 
 with col_chart1:
-    st.subheader("📊 Delta Analysis")
+    st.markdown(f'<h2 style="color: white !important; text-shadow: 3px 3px 6px rgba(0,0,0,0.5) !important;">📊 Delta Analysis</h2>', unsafe_allow_html=True)
     data_delta = pd.DataFrame({
         "Scenario": ["Baseline", "Current"],
         "Profit": [baseline_pred, hasil_prediksi]
@@ -299,7 +312,7 @@ with col_chart1:
     st.bar_chart(data=data_delta, x="Scenario", y="Profit")
 
 with col_chart2:
-    st.subheader("📉 History Trend")
+    st.markdown(f'<h2 style="color: white !important; text-shadow: 3px 3px 6px rgba(0,0,0,0.5) !important;">📉 History Trend</h2>', unsafe_allow_html=True)
     if len(st.session_state.simulation_history) > 0:
         hist_df = pd.DataFrame(st.session_state.simulation_history)
         hist_df["index"] = range(1, len(hist_df)+1)
@@ -312,7 +325,7 @@ with col_chart2:
 st.markdown("""
 <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 20px; margin: 20px 0;">
 """, unsafe_allow_html=True)
-st.subheader("📜 Simulation History")
+st.markdown(f'<h2 style="color: white !important; text-shadow: 3px 3px 6px rgba(0,0,0,0.5) !important;">📜 Simulation History</h2>', unsafe_allow_html=True)
 if len(st.session_state.simulation_history) > 0:
     for idx, sim in enumerate(reversed(st.session_state.simulation_history[-5:])):
         with st.container():
@@ -333,7 +346,7 @@ st.markdown("</div>", unsafe_allow_html=True)
 st.markdown("""
 <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 20px; margin: 20px 0;">
 """, unsafe_allow_html=True)
-st.subheader("💬 Live Chat (Online Mode)")
+st.markdown(f'<h2 style="color: white !important; text-shadow: 3px 3px 6px rgba(0,0,0,0.5) !important;">💬 Live Chat (Online Mode)</h2>', unsafe_allow_html=True)
 
 chat_col1, chat_col2 = st.columns([3, 1])
 
