@@ -60,120 +60,16 @@ if 'last_confetti' not in st.session_state:
 # ==========================================
 
 st.set_page_config(
-    page_title="🎮 Profit Simulator Pro",
+    page_title="🎮 Simulator Keuntungan Pro",
     layout="wide",
     page_icon="🎯"
 )
 
 st.markdown("""
 <style>
-    /* Main Background */
-    .main {
+    .main, .stApp {
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
         padding: 2rem;
-    }
-    .stApp {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
-    }
-
-    /* Metric Cards */
-    .stMetric {
-        background: rgba(255, 255, 255, 0.98) !important;
-        border-radius: 15px !important;
-        padding: 20px !important;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.3) !important;
-    }
-    .stMetric [data-testid="stMetricLabel"] p {
-        color: #1a1a1a !important;
-    }
-    .stMetric [data-testid="stMetricValue"] {
-        color: #1a1a1a !important;
-    }
-    .stMetric [data-testid="stMetricDelta"] {
-        color: #1a1a1a !important;
-    }
-
-    /* Sidebar */
-    .css-1d391kg {
-        background: rgba(255,255,255,0.95) !important;
-        border-radius: 15px !important;
-    }
-
-    /* Headings */
-    h1, h2, h3 {
-        color: white !important;
-        text-shadow: 3px 3px 6px rgba(0,0,0,0.5) !important;
-        font-weight: bold !important;
-    }
-
-    /* Buttons */
-    .stButton>button {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
-        color: white !important;
-        border-radius: 20px !important;
-        border: none !important;
-        padding: 0.5rem 2rem !important;
-        font-weight: bold !important;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.2) !important;
-    }
-    .stButton>button:hover {
-        transform: translateY(-2px) !important;
-        box-shadow: 0 6px 20px rgba(0,0,0,0.3) !important;
-    }
-
-    /* Chat Messages */
-    .chat-message {
-        background: rgba(255, 255, 255, 0.98) !important;
-        padding: 10px 15px !important;
-        border-radius: 15px !important;
-        margin: 5px 0 !important;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.3) !important;
-        color: #1a1a1a !important;
-    }
-    .chat-message * {
-        color: #1a1a1a !important;
-    }
-
-    /* History Cards */
-    .history-card {
-        background: rgba(255,255,255,0.98) !important;
-        border-radius: 10px !important;
-        padding: 15px !important;
-        margin: 10px 0 !important;
-        box-shadow: 0 3px 10px rgba(0,0,0,0.3) !important;
-        color: #1a1a1a !important;
-    }
-    .history-card * {
-        color: #1a1a1a !important;
-    }
-
-    /* All Text in Markdown Containers */
-    div[data-testid="stMarkdownContainer"] p {
-        color: white !important;
-    }
-    div[data-testid="stMarkdownContainer"] {
-        color: white !important;
-    }
-
-    /* Labels */
-    label {
-        color: white !important;
-    }
-
-    /* DataFrames & Charts */
-    [data-testid="stDataFrame"] {
-        background: rgba(255,255,255,0.95) !important;
-        border-radius: 10px !important;
-        padding: 10px !important;
-    }
-
-    /* Info/Warning/Success Boxes */
-    .stAlert {
-        background: rgba(255,255,255,0.95) !important;
-        color: #1a1a1a !important;
-    }
-    .stAlert * {
-        color: #1a1a1a !important;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -183,36 +79,39 @@ st.markdown("""
 # ==========================================
 
 st.markdown("""
-<div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 20px; margin-bottom: 20px;">
+<h1 style="color: white; text-shadow: 3px 3px 6px rgba(0,0,0,0.5); font-weight: bold; margin: 0;">🎮 Simulator Kebijakan Keuntungan</h1>
+<h2 style="color: white; text-shadow: 3px 3px 6px rgba(0,0,0,0.5); font-weight: bold; margin-top: 10px;">🔮 Digital Twin What-If Analysis</h2>
 """, unsafe_allow_html=True)
-st.title("🎮 Profit Simulator Pro")
-st.subheader("🔮 Digital Twin What-If Analysis")
-st.markdown("</div>", unsafe_allow_html=True)
 
 # ==========================================
 # 7. SIDEBAR
 # ==========================================
 
-st.sidebar.header("⚙️ Controls")
+st.sidebar.markdown("""
+<h3 style="color: #1a1a1a; font-weight: bold; margin: 0 0 15px 0;">⚙️ Kontrol</h3>
+""", unsafe_allow_html=True)
 
-st.sidebar.text_input("👤 Your Name", value=st.session_state.user_name, key="user_name_input")
-st.session_state.user_name = st.session_state.user_name_input
+# Sidebar Name Input
+name_input = st.sidebar.text_input("👤 Nama Kamu", value=st.session_state.user_name, key="user_name_input")
+st.session_state.user_name = name_input
 
+# Sidebar Sliders
 iklan_slider = st.sidebar.slider(
-    "📢 Ad Budget (Million)",
+    "📢 Anggaran Iklan (Juta)",
     min_value=0,
     max_value=50,
     value=10
 )
 
 diskon_slider = st.sidebar.slider(
-    "🏷️ Discount (%)",
+    "🏷️ Diskon (%)",
     min_value=0,
     max_value=50,
     value=10
 )
 
-if st.sidebar.button("🎯 Save Simulation"):
+# Sidebar Buttons
+if st.sidebar.button("🎯 Simpan Simulasi"):
     timestamp = datetime.now().strftime("%H:%M:%S")
     pred, delta = run_simulation(iklan_slider, diskon_slider)
     st.session_state.simulation_history.append({
@@ -222,11 +121,19 @@ if st.sidebar.button("🎯 Save Simulation"):
         "profit": pred,
         "delta": delta
     })
-    st.sidebar.success("✅ Simulation saved!")
+    st.sidebar.markdown("""
+    <div style="background: rgba(46, 204, 113, 0.2); color: #1a1a1a; padding: 10px; border-radius: 10px; margin-top: 10px;">
+        ✅ Simulasi berhasil disimpan!
+    </div>
+    """, unsafe_allow_html=True)
 
-if st.sidebar.button("🗑️ Clear History"):
+if st.sidebar.button("🗑️ Hapus Riwayat"):
     st.session_state.simulation_history = []
-    st.sidebar.warning("History cleared!")
+    st.sidebar.markdown("""
+    <div style="background: rgba(241, 196, 15, 0.2); color: #1a1a1a; padding: 10px; border-radius: 10px; margin-top: 10px;">
+        ⚠️ Riwayat telah dihapus!
+    </div>
+    """, unsafe_allow_html=True)
 
 # ==========================================
 # 8. RUN SIMULATION
@@ -249,26 +156,26 @@ delta_color = "#2ecc71" if delta > 0 else "#e74c3c" if delta < 0 else "#95a5a6"
 
 with col1:
     st.markdown(f"""
-    <div style="background: rgba(255,255,255,0.98) !important; border-radius: 15px !important; padding: 20px !important; box-shadow: 0 4px 15px rgba(0,0,0,0.3) !important;">
-        <p style="color: #1a1a1a !important; font-size: 16px !important; margin: 0 0 10px 0 !important;">💰 Predicted Profit</p>
-        <p style="color: #1a1a1a !important; font-size: 28px !important; font-weight: bold !important; margin: 0 0 5px 0 !important;">Rp {hasil_prediksi:.2f}M</p>
-        <p style="color: {delta_color} !important; font-size: 18px !important; margin: 0 !important;">{'↑' if delta > 0 else '↓' if delta < 0 else ''} {delta:.2f}M</p>
+    <div style="background: rgba(255,255,255,0.98); border-radius: 15px; padding: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+        <p style="color: #1a1a1a; font-size: 16px; margin: 0 0 10px 0;">💰 Predicted Profit</p>
+        <p style="color: #1a1a1a; font-size: 28px; font-weight: bold; margin: 0 0 5px 0;">Rp {hasil_prediksi:.2f}M</p>
+        <p style="color: {delta_color}; font-size: 18px; margin: 0;">{'↑' if delta > 0 else '↓' if delta < 0 else ''} {delta:.2f}M</p>
     </div>
     """, unsafe_allow_html=True)
 
 with col2:
     st.markdown(f"""
-    <div style="background: rgba(255,255,255,0.98) !important; border-radius: 15px !important; padding: 20px !important; box-shadow: 0 4px 15px rgba(0,0,0,0.3) !important;">
-        <p style="color: #1a1a1a !important; font-size: 16px !important; margin: 0 0 10px 0 !important;">📊 Baseline</p>
-        <p style="color: #1a1a1a !important; font-size: 28px !important; font-weight: bold !important; margin: 0 !important;">Rp {baseline_pred:.2f}M</p>
+    <div style="background: rgba(255,255,255,0.98); border-radius: 15px; padding: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+        <p style="color: #1a1a1a; font-size: 16px; margin: 0 0 10px 0;">📊 Baseline</p>
+        <p style="color: #1a1a1a; font-size: 28px; font-weight: bold; margin: 0;">Rp {baseline_pred:.2f}M</p>
     </div>
     """, unsafe_allow_html=True)
 
 with col3:
     st.markdown(f"""
-    <div style="background: rgba(255,255,255,0.98) !important; border-radius: 15px !important; padding: 20px !important; box-shadow: 0 4px 15px rgba(0,0,0,0.3) !important;">
-        <p style="color: #1a1a1a !important; font-size: 16px !important; margin: 0 0 10px 0 !important;">Status</p>
-        <p style="font-size: 40px !important; margin: 0 !important;">{emoji}</p>
+    <div style="background: rgba(255,255,255,0.98); border-radius: 15px; padding: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+        <p style="color: #1a1a1a; font-size: 16px; margin: 0 0 10px 0;">Status</p>
+        <p style="font-size: 40px; margin: 0;">{emoji}</p>
     </div>
     """, unsafe_allow_html=True)
 
@@ -276,24 +183,26 @@ with col3:
 # 10. SCENARIO ANALYSIS
 # ==========================================
 
-st.markdown(f'<h2 style="color: white !important; text-shadow: 3px 3px 6px rgba(0,0,0,0.5) !important;">📈 Scenario Analysis</h2>', unsafe_allow_html=True)
+st.markdown("""
+<h3 style="color: white; text-shadow: 3px 3px 6px rgba(0,0,0,0.5); font-weight: bold; margin-top: 30px;">📈 Analisis Skenario</h3>
+""", unsafe_allow_html=True)
 
 if delta > 0:
     st.markdown(f"""
-    <div style="background: rgba(46, 204, 113, 0.95) !important; color: white !important; padding: 15px !important; border-radius: 10px !important; margin: 10px 0 !important;">
-        <p style="color: white !important; font-size: 16px !important; margin: 0 !important;">🎉 Excellent! Profit increases by {delta:.2f}M!</p>
+    <div style="background: rgba(46, 204, 113, 0.2); color: #1a1a1a; padding: 15px; border-radius: 10px; margin-top: 10px;">
+        🎉 Bagus! Keuntungan naik sebesar Rp {delta:.2f} Juta!
     </div>
     """, unsafe_allow_html=True)
 elif delta < 0:
     st.markdown(f"""
-    <div style="background: rgba(231, 76, 60, 0.95) !important; color: white !important; padding: 15px !important; border-radius: 10px !important; margin: 10px 0 !important;">
-        <p style="color: white !important; font-size: 16px !important; margin: 0 !important;">⚠️ Warning: Profit decreases by {abs(delta):.2f}M</p>
+    <div style="background: rgba(231, 76, 60, 0.2); color: #1a1a1a; padding: 15px; border-radius: 10px; margin-top: 10px;">
+        ⚠️ Perhatian! Keuntungan turun sebesar Rp {abs(delta):.2f} Juta
     </div>
     """, unsafe_allow_html=True)
 else:
-    st.markdown(f"""
-    <div style="background: rgba(52, 152, 219, 0.95) !important; color: white !important; padding: 15px !important; border-radius: 10px !important; margin: 10px 0 !important;">
-        <p style="color: white !important; font-size: 16px !important; margin: 0 !important;">ℹ️ No change from baseline</p>
+    st.markdown("""
+    <div style="background: rgba(52, 152, 219, 0.2); color: #1a1a1a; padding: 15px; border-radius: 10px; margin-top: 10px;">
+        ℹ️ Tidak ada perubahan dari baseline
     </div>
     """, unsafe_allow_html=True)
 
@@ -304,15 +213,19 @@ else:
 col_chart1, col_chart2 = st.columns(2)
 
 with col_chart1:
-    st.markdown(f'<h2 style="color: white !important; text-shadow: 3px 3px 6px rgba(0,0,0,0.5) !important;">📊 Delta Analysis</h2>', unsafe_allow_html=True)
+    st.markdown("""
+    <h3 style="color: white; text-shadow: 3px 3px 6px rgba(0,0,0,0.5); font-weight: bold; margin-top: 30px;">📊 Analisis Delta</h3>
+    """, unsafe_allow_html=True)
     data_delta = pd.DataFrame({
-        "Scenario": ["Baseline", "Current"],
-        "Profit": [baseline_pred, hasil_prediksi]
+        "Skenario": ["Baseline", "Saat Ini"],
+        "Keuntungan": [baseline_pred, hasil_prediksi]
     })
-    st.bar_chart(data=data_delta, x="Scenario", y="Profit")
+    st.bar_chart(data=data_delta, x="Skenario", y="Keuntungan")
 
 with col_chart2:
-    st.markdown(f'<h2 style="color: white !important; text-shadow: 3px 3px 6px rgba(0,0,0,0.5) !important;">📉 History Trend</h2>', unsafe_allow_html=True)
+    st.markdown("""
+    <h3 style="color: white; text-shadow: 3px 3px 6px rgba(0,0,0,0.5); font-weight: bold; margin-top: 30px;">📉 Tren Riwayat</h3>
+    """, unsafe_allow_html=True)
     if len(st.session_state.simulation_history) > 0:
         hist_df = pd.DataFrame(st.session_state.simulation_history)
         hist_df["index"] = range(1, len(hist_df)+1)
@@ -323,38 +236,43 @@ with col_chart2:
 # ==========================================
 
 st.markdown("""
-<div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 20px; margin: 20px 0;">
+<div style="margin-top: 30px;">
+    <h3 style="color: white; text-shadow: 3px 3px 6px rgba(0,0,0,0.5); font-weight: bold; margin: 0;">📜 Riwayat Simulasi</h3>
+</div>
 """, unsafe_allow_html=True)
-st.markdown(f'<h2 style="color: white !important; text-shadow: 3px 3px 6px rgba(0,0,0,0.5) !important;">📜 Simulation History</h2>', unsafe_allow_html=True)
+
 if len(st.session_state.simulation_history) > 0:
     for idx, sim in enumerate(reversed(st.session_state.simulation_history[-5:])):
-        with st.container():
-            st.markdown(f"""
-            <div class="history-card">
-                <b>🕐 {sim['time']}</b> | Ad: {sim['ad_budget']}M | Discount: {sim['discount']}%<br>
-                💰 Profit: Rp {sim['profit']:.2f}M | Δ: {sim['delta']:.2f}M
-            </div>
-            """, unsafe_allow_html=True)
+        st.markdown(f"""
+        <div style="background: rgba(255,255,255,0.98); border-radius: 10px; padding: 15px; margin: 10px 0; box-shadow: 0 3px 10px rgba(0,0,0,0.3); color: #1a1a1a;">
+            <b>🕐 {sim['time']}</b> | Iklan: {sim['ad_budget']} Juta | Diskon: {sim['discount']}%<br>
+            💰 Keuntungan: Rp {sim['profit']:.2f} Juta | Δ: {sim['delta']:.2f} Juta
+        </div>
+        """, unsafe_allow_html=True)
 else:
-    st.info("No simulations saved yet. Use the sidebar to save!")
-st.markdown("</div>", unsafe_allow_html=True)
+    st.markdown("""
+    <div style="background: rgba(52, 152, 219, 0.2); color: #1a1a1a; padding: 15px; border-radius: 10px; margin-top: 10px;">
+        ℹ️ Belum ada simulasi yang disimpan. Gunakan tombol di sidebar!
+    </div>
+    """, unsafe_allow_html=True)
 
 # ==========================================
 # 13. ONLINE CHAT MODE
 # ==========================================
 
 st.markdown("""
-<div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 20px; margin: 20px 0;">
+<div style="margin-top: 30px;">
+    <h3 style="color: white; text-shadow: 3px 3px 6px rgba(0,0,0,0.5); font-weight: bold; margin: 0;">💬 Live Chat (Mode Online)</h3>
+</div>
 """, unsafe_allow_html=True)
-st.markdown(f'<h2 style="color: white !important; text-shadow: 3px 3px 6px rgba(0,0,0,0.5) !important;">💬 Live Chat (Online Mode)</h2>', unsafe_allow_html=True)
 
 chat_col1, chat_col2 = st.columns([3, 1])
 
 with chat_col1:
-    chat_message = st.text_input("Type your message...", key="chat_input")
+    chat_message = st.text_input("Ketik pesan kamu...", key="chat_input")
 
 with chat_col2:
-    if st.button("Send 📨"):
+    if st.button("Kirim 📨"):
         if chat_message:
             st.session_state.chat_messages.append({
                 "user": st.session_state.user_name,
@@ -365,12 +283,11 @@ with chat_col2:
 # Display chat
 for msg in st.session_state.chat_messages[-10:]:
     st.markdown(f"""
-    <div class="chat-message">
+    <div style="background: rgba(255,255,255,0.98); padding: 10px 15px; border-radius: 15px; margin: 5px 0; box-shadow: 0 2px 5px rgba(0,0,0,0.3); color: #1a1a1a;">
         <b>{msg['user']}</b> <small>({msg['time']})</small><br>
         {msg['message']}
     </div>
     """, unsafe_allow_html=True)
-st.markdown("</div>", unsafe_allow_html=True)
 
 # ==========================================
 # 14. FOOTER
