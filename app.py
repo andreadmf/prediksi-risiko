@@ -244,26 +244,33 @@ if delta > 0 and (time.time() - st.session_state.last_confetti > 3):
 # ==========================================
 
 col1, col2, col3 = st.columns(3)
+emoji = "🚀" if delta > 0 else "📉" if delta < 0 else "⏸️"
+delta_color = "#2ecc71" if delta > 0 else "#e74c3c" if delta < 0 else "#95a5a6"
 
 with col1:
-    st.metric(
-        label="💰 Predicted Profit",
-        value=f"Rp {hasil_prediksi:.2f}M",
-        delta=f"{delta:.2f}M"
-    )
+    st.markdown(f"""
+    <div style="background: rgba(255,255,255,0.98); border-radius: 15px; padding: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+        <p style="color: #1a1a1a; font-size: 16px; margin: 0 0 10px 0;">💰 Predicted Profit</p>
+        <p style="color: #1a1a1a; font-size: 28px; font-weight: bold; margin: 0 0 5px 0;">Rp {hasil_prediksi:.2f}M</p>
+        <p style="color: {delta_color}; font-size: 18px; margin: 0;">{'↑' if delta > 0 else '↓' if delta < 0 else ''} {delta:.2f}M</p>
+    </div>
+    """, unsafe_allow_html=True)
 
 with col2:
-    st.metric(
-        label="📊 Baseline",
-        value=f"Rp {baseline_pred:.2f}M"
-    )
+    st.markdown(f"""
+    <div style="background: rgba(255,255,255,0.98); border-radius: 15px; padding: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+        <p style="color: #1a1a1a; font-size: 16px; margin: 0 0 10px 0;">📊 Baseline</p>
+        <p style="color: #1a1a1a; font-size: 28px; font-weight: bold; margin: 0;">Rp {baseline_pred:.2f}M</p>
+    </div>
+    """, unsafe_allow_html=True)
 
 with col3:
-    emoji = "🚀" if delta > 0 else "📉" if delta < 0 else "⏸️"
-    st.metric(
-        label="Status",
-        value=emoji
-    )
+    st.markdown(f"""
+    <div style="background: rgba(255,255,255,0.98); border-radius: 15px; padding: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+        <p style="color: #1a1a1a; font-size: 16px; margin: 0 0 10px 0;">Status</p>
+        <p style="font-size: 40px; margin: 0;">{emoji}</p>
+    </div>
+    """, unsafe_allow_html=True)
 
 # ==========================================
 # 10. SCENARIO ANALYSIS
